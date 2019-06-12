@@ -6,7 +6,7 @@ class Question extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isOpen: false
+      isOpen: this.props.isOpen || false
     };
   }
   render() {

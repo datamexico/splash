@@ -100,6 +100,7 @@ p, li {
         color: var(--white);
         border-bottom: 3px solid transparent;
         padding: 5px 10px;
+        font-size: 14px;
         &:hover {
           border-bottom: 3px solid var(--red);
           text-decoration: none;
@@ -188,28 +189,107 @@ p, li {
   }
 }
 
+select {
+  width: 100%;
+  padding: 20px;
+  height: 36px;
+  /* background: transparent; */
+  color: white !important;
+  border: 0px solid;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0px;
+  /* -webkit-appearance: none; */
+  padding-left: 50px;
+}
+
 .mail {
-  background: transparent url(/icons/ico-mail.svg) left no-repeat;
+  background: transparent url(/icons/ico-mail.svg) left no-repeat !important;
 }
 
 .labor {
-  background: transparent url(/icons/ico-labor.svg) left no-repeat;
+  background: transparent url(/icons/ico-labor.svg) left no-repeat !important;
+}
+
+.button-list {
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 .message {
-  background: transparent url(/icons/ico-message.svg) left no-repeat;
+  background: transparent url(/icons/ico-message.svg) left no-repeat !important;
 }
 
 .name {
-  background: transparent url(/icons/ico-name.svg) left no-repeat;
+  background: transparent url(/icons/ico-name.svg) left no-repeat !important;
 }
 
 .location {
-  background: transparent url(/icons/ico-location.svg) left no-repeat;
+  background: transparent url(/icons/ico-location.svg) left no-repeat !important;
 }
 
 .subject {
-  background: transparent url(/icons/ico-subject.svg) left no-repeat;
+  background: transparent url(/icons/ico-subject.svg) left no-repeat !important;
+}
+
+.dropdown-selector {
+  & .bp3-popover-target {
+    width: 100% !important;
+  }
+}
+
+.bp3-popover-target {
+  width: 100% !important;
+}
+
+.bp3-button.dropdown {
+  width: 100% !important;
+  background: transparent;
+  justify-content: space-between;
+  color: var(--white) !important;
+  padding-left: 50px;
+  border-bottom: 1px solid #4f5159;
+  border-radius: 0px;
+  height: 37px;
+  margin-bottom: 5px;
+}
+
+.bp3-transition-container {
+  left: 30px !important;
+}
+
+.popover-locations {
+  max-height: 200px;
+  overflow-y: scroll;
+  & ul {
+    list-style: none;
+    margin-left: -40px;
+    & li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      &.selected {
+        background-color: var(--red);
+        color: var(--white);
+      }
+      &.return {
+        text-transform: uppercase;
+        color: #4f5159;
+        font-size: 11px;
+      }
+      cursor: pointer;
+      padding: 5px 15px;
+      width: 250px;
+      &:hover {
+        background: #eeeeee;
+        color: #1f2023;
+      }
+    }
+  }
+}
+
+.default-question {
+  color: #aaaaaa;
+  opacity: 0.7;
 }
 
 @media only screen and (max-width: 768px) {
@@ -278,3 +358,5 @@ p, li {
     width: 100%;
   }
 }
+
+

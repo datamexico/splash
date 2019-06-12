@@ -1,10 +1,11 @@
-import React, {Component} from "react";
-import {AnchorLink} from "@datawheel/canon-core";
+import React, { Component } from "react";
+import { AnchorLink } from "@datawheel/canon-core";
 import "./Home.css";
 import Question from "../components/Question";
 import Goal from "../components/Goal";
-import {Toaster, Toast, Position} from "@blueprintjs/core";
+import { Icon, PopoverInteractionKind, Popover, InputGroup, Button, Toaster, Toast, Position, MenuItem } from "@blueprintjs/core";
 import axios from "axios";
+import { Select } from "@blueprintjs/select";
 
 export default class Home extends Component {
 
@@ -16,13 +17,42 @@ export default class Home extends Component {
       message: "",
       name: "",
       sector: "",
-      subject: "",
-      showToast: false
+      subject: "Tengo una pregunta",
+      showToast: false,
+      isOpen: false,
+      locations: [],
+      locationsFilter: [],
+      locationPivot: {},
+      search: undefined
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleSelector = this.handleSelector.bind(this);
+    this.handleLocation = this.handleLocation.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+
   }
+
+  componentDidMount() {
+    axios.get("/json/geo.json").then(resp => {
+      const data = resp.data;
+      const obj = [
+        {depth: "country", name: "México", id: "mx", ent: 0},
+        {depth: "country", name: "Otro país", id: "other", ent: 0}
+      ];
+      this.setState({locations: data, locationsFilter: obj});
+    });
+  }
+
+  handleInputChange = e => {
+    this.setState({search: e.target.value});
+  };
+
+  handleSelector = (state, value) => {
+    this.setState({[state]: value});
+  }
+
   handleSubmit = event => {
     event.preventDefault();
     // this.sendMessage()
@@ -60,8 +90,46 @@ export default class Home extends Component {
     this.setState({[state]: evt.target.value});
   }
 
+  handleLocation = d => {
+    if (d.depth === "country" && d.id === "mx") {
+      this.setState({
+        locationsFilter: this.state.locations.filter(h => h.depth === "ent"),
+        search: undefined
+      });
+    }
+    else if (d.depth === "ent") {
+      this.setState({
+        locationsFilter: this.state.locations.filter(h => h.depth === "mun" && h.ent === d.ent),
+        search: undefined
+      });
+    }
+    else {
+      this.setState({location: d.name, isOpen: false, locationPivot: d});
+    }
+  }
+
+  backLocation = d => {
+    if (d.depth === "mun") {
+      this.setState({locationsFilter: this.state.locations.filter(h => h.depth === "ent")});
+    }
+    else if (d.depth === "ent") {
+      const obj = [
+        {depth: "country", name: "México", id: "mx", ent: 0},
+        {depth: "country", name: "Otro país", id: "other", ent: 0}
+      ];
+      this.setState({locationsFilter: obj});
+    }
+  }
+
   render() {
-    console.log(this.state);
+
+    const {search, locationsFilter} = this.state;
+
+    const filteredItems = search ? locationsFilter.filter(d =>
+      d.name.toLowerCase().includes(search.toLowerCase())
+    ) : locationsFilter;
+    filteredItems.sort((a, b) => a.name > b.name ? 1 : -1);
+
     return (
       <div id="Home">
         <div className="hero">
@@ -82,13 +150,13 @@ export default class Home extends Component {
                   <img className="icon" src="/images/logo.svg" alt="" />
                 </div>
                 <div className="collaborator-icons">
-                  <a href="https://" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.gob.mx/se/" target="_blank" rel="noopener noreferrer">
                     <img className="mini-icon" src="/images/SE.svg" alt="" />
                   </a>
-                  <a href="https://" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.matt.org/" target="_blank" rel="noopener noreferrer">
                     <img className="mini-icon" src="/images/matt-white.svg" alt="" />
                   </a>
-                  <a href="https://" target="_blank" rel="noopener noreferrer">
+                  <a href="https://datawheel.us" target="_blank" rel="noopener noreferrer">
                     <img className="mini-icon" src="/images/datawheel-white.svg" alt="" />
                   </a>
                 </div>
@@ -141,6 +209,7 @@ export default class Home extends Component {
             <h3 className="title">Preguntas Frecuentes</h3>
             <Question
               title="¿Por qué México necesita una plataforma de datos?"
+              isOpen={true}
             >
               <p>Para transformar datos en conocimiento y conocimiento en decisiones estratégicas se necesitan herramientas que ayuden a integrar información de diversas fuentes y que conviertan datos en narrativas articuladas. </p>
 
@@ -173,7 +242,7 @@ export default class Home extends Component {
                 <li><strong>Abril 2022:</strong> lanzamiento de un sistema de monitoreo de brechas de inversiones públicas en el cual pueden ser agregadas varias dimensiones, tales como: tipo (saneamiento, salud, infraestructura, etc.), localidad (geocodificada o agregada por estado, município o colonia), o por unidades administrativas (secretaría, gobierno estatal o municipal) lo que garantiza mayor transparencia del uso de los recursos públicos y una mejor evaluación de sus objetivos y eficiencia.
                 </li>
               </ul>
-              
+
 
             </Question>
             <Question
@@ -207,7 +276,7 @@ export default class Home extends Component {
               title="¿Existen proyectos similares a DataMexico en otros países?"
             >
               <p>Proyectos similares ya se han realizado en otros países: en 2011 fue presentado el <a href="https://atlas.media.mit.edu/es/" target="_blank" rel="noopener noreferrer">Observatorio de Complejidad Económica</a>, que consiste en varias herramientas en línea que le permiten a los usuarios crear visualizaciones de los conjuntos de bienes exportados e importados por varios países para todos los años para los cuales hay datos disponibles. </p>
-                
+
               <p>En 2016, fue lanzada la plataforma de datos abiertos <a href="https://datausa.io/" target="_blank" rel="noopener noreferrer">DataUSA</a>, que reúne datos de varias encuestas del Censo de Estados Unidos, de los Departamentos de Comercio; de Trabajo; y de Educación, entre otros, para generar análisis y visualizaciones en áreas como trabajo, competencias y educación a través de industrias y geografía. En 2018 se lanzaron <a href="https://es.datachile.io/" target="_blank" rel="noopener noreferrer">DataChile</a> y <a href="http://datakorea.io/en" target="_blank" rel="noopener noreferrer">DataKorea</a>, dos grandes esfuerzos de integración de datos públicos para generar análisis y visualizaciones útiles para la toma de decisiones. </p>
             </Question>
           </div>
@@ -220,25 +289,106 @@ export default class Home extends Component {
             </div>
             <div className="column">
               <form className="contact-form" onSubmit={this.handleSubmit}>
-                <select name="" id="">
-                  <option value="Una pregunta">Una pregunta</option>
-                  <option value="Un comentario">Un comentario</option>
-                  <option value="Una sugerencia">Una sugerencia</option>
-                  <option value="Una crítica">Una crítica</option>
-                  <option value="Otro">Otro</option>
-                </select>
-                <input onChange={evt => this.handleChange("subject", evt)} className="input subject" placeholder="Tengo una pregunta" type="text" />
+                <Select
+                  items={
+                    ["Tengo una pregunta", "Tengo un comentario", "Tengo una sugerencia", "Tengo una crítica", "Otro"]
+                  }
+                  className="dropdown-selector"
+                  filterable={false}
+                  scrollToActiveItem={true}
+                  itemRenderer={e => {
+                    return (
+                      <MenuItem
+                        className={"filter-option"}
+                        text={
+                          <div className="option">
+                            {e}
+                          </div>
+                        }
+                        onClick={() => this.handleSelector("subject", e)}
+                      />
+                    );
+                  }}
+                  resetOnSelect={false}
+                  resetOnQuery={true}
+                >
+                  {/* children become the popover target; render value here */}
+                  <Button className="dropdown subject" text={this.state.subject} rightIcon="chevron-down" />
+                </Select>
+
                 <input onChange={evt => this.handleChange("name", evt)} className="input name" placeholder="¿Cuál es tu nombre?" type="text" />
-                <select name="" id="">
-                  <option value="Academia">Academia</option>
-                  <option value="Industria">Industria</option>
-                  <option value="Sector Público">Sector Público</option>
-                  <option value="Tecnología">Tecnología</option>
-                  <option value="Medios de Comunicación">Medios de Comunicación</option>
-                  <option value="Otro">Otro</option>
-                </select>
-                <input onChange={evt => this.handleChange("sector", evt)} className="input labor" placeholder="¿En qué sector trabajas?" type="text" />
-                <input onChange={evt => this.handleChange("location", evt)} className="input location" placeholder="¿Qué localidad representas a través de esta comunicación?" type="text" />
+                <Select
+                  items={
+                    ["Academia", "Industria", "Sector Público", "Tecnología", "Medios de Comunicación", "Otro"]
+                  }
+                  className="dropdown-selector"
+                  filterable={false}
+                  scrollToActiveItem={true}
+                  itemRenderer={e => {
+                    return (
+                      <MenuItem
+                        className={"filter-option"}
+                        text={
+                          <div className="option">
+                            {e}
+                          </div>
+                        }
+                        onClick={() => this.handleSelector("sector", e)}
+                      />
+                    );
+                  }}
+                  resetOnSelect={false}
+                  resetOnQuery={true}
+                >
+                  {/* children become the popover target; render value here */}
+                  <Button 
+                    className="dropdown labor" 
+                    text={this.state.sector === "" ? <span className="default-question">¿En qué sector trabajas?</span> : this.state.sector} 
+                    rightIcon="chevron-down" 
+                  />
+                </Select>
+
+                <Popover
+                  className="dropdown-selector"
+                  content={
+                    <div className="popover-locations">
+                      <InputGroup
+                        leftIcon="search"
+                        onChange={this.handleInputChange}
+                        value={search || ""}
+                        placeholder={"Filtrar"}
+                        rightElement={<Button onClick={() => this.setState({search: undefined})} className="button-list" icon="cross" />}
+                      />
+                      <ul>
+                        {this.state.locationsFilter[0] && this.state.locationsFilter[0].depth !== "country" 
+                          ? <li className="return" onClick={() => this.backLocation(this.state.locationsFilter[0])}>Volver</li>
+                          : ""}
+                        {filteredItems.map((d, i) => {
+                          const s = this.state.locationPivot.id === d.id ? "selected" : "";
+                          return <li className={s} key={`item_${d.depth}_${i}`} onClick={() => this.handleLocation(d)}>
+                            <span>{d.name}</span>
+                            {d.depth === "ent" || d.id === "mx" ? <Icon icon="chevron-right" /> : <span />}
+                          </li>;
+                        })}
+                        {filteredItems.length === 0 ? <li>Sin resultados</li> : ""}
+                      </ul>
+                    </div>
+                  }
+                  interactionKind={PopoverInteractionKind.CLICK}
+                  isOpen={this.state.isOpen}
+                  onInteraction={state => this.setState({isOpen: state})}
+                  position={Position.BOTTOM}
+                >
+                  <Button 
+                    className="dropdown location"
+                    onClick={() => this.setState({isOpen: !this.state.isOpen})}
+                    text={this.state.location === "" 
+                      ? <span className="default-question">¿Qué localidad representas a través de esta comunicación?</span> : this.state.location
+                    } 
+                    rightIcon="chevron-down" 
+                  />
+                </Popover>
+
                 <label className="label message">Tu mensaje</label>
                 <textarea onChange={evt => this.handleChange("message", evt)} className="textarea" name="" id="" cols="30" rows="10"></textarea>
                 <input onChange={evt => this.handleChange("email", evt)} className="input mail" placeholder="Correo electrónico" type="email" />
@@ -255,13 +405,13 @@ export default class Home extends Component {
                 <img className="mini-icon" src="/images/logo.svg" alt="" />
               </div>
               <div className="column mini-logos collaborator-icons">
-                <a href="https://" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.gob.mx/se/" target="_blank" rel="noopener noreferrer">
                   <img className="mini-icon" src="/images/SE-gray.svg" alt="" />
                 </a>
-                <a href="https://" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.matt.org/" target="_blank" rel="noopener noreferrer">
                   <img className="mini-icon" src="/images/matt-gray.svg" alt="" />
                 </a>
-                <a href="https://" target="_blank" rel="noopener noreferrer">
+                <a href="https://datawheel.us/" target="_blank" rel="noopener noreferrer">
                   <img className="mini-icon" src="/images/datawheel-gray.svg" alt="" />
                 </a>
               </div>
@@ -270,11 +420,11 @@ export default class Home extends Component {
         </footer>
 
         <Toaster position={Position.BOTTOM}>
-          {this.state.showToast && <Toast 
+          {this.state.showToast && <Toast
             message="Mensaje ha sido enviado exitosamente."
             intent="success"
-            timeout="2000" 
-            onDismiss={evt => this.setState({showToast: false})}
+            timeout="2000"
+            onDismiss={evt => this.setState({ showToast: false })}
           />}
         </Toaster>
       </div>
