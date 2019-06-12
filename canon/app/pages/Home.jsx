@@ -140,7 +140,7 @@ export default class Home extends Component {
                 <AnchorLink to="audience"><li>Audiencia</li></AnchorLink>
                 <AnchorLink to="goals"><li>Objetivos</li></AnchorLink>
                 <AnchorLink to="faq"><li>Preguntas Frecuentes</li></AnchorLink>
-                <AnchorLink to="contact"><li>Ser parte</li></AnchorLink>
+                <AnchorLink to="contact"><li>Contáctanos</li></AnchorLink>
               </ul>
             </div>
 
@@ -296,16 +296,17 @@ export default class Home extends Component {
                   className="dropdown-selector"
                   filterable={false}
                   scrollToActiveItem={true}
-                  itemRenderer={e => {
+                  itemRenderer={d => {
+                    const s = this.state.subject === d ? "selected" : "";
                     return (
                       <MenuItem
-                        className={"filter-option"}
+                        className={s}
                         text={
                           <div className="option">
-                            {e}
+                            {d}
                           </div>
                         }
-                        onClick={() => this.handleSelector("subject", e)}
+                        onClick={() => this.handleSelector("subject", d)}
                       />
                     );
                   }}
@@ -324,16 +325,17 @@ export default class Home extends Component {
                   className="dropdown-selector"
                   filterable={false}
                   scrollToActiveItem={true}
-                  itemRenderer={e => {
+                  itemRenderer={d => {
+                    const s = this.state.sector === d ? "selected" : "";
                     return (
                       <MenuItem
-                        className={"filter-option"}
+                        className={s}
                         text={
                           <div className="option">
-                            {e}
+                            {d}
                           </div>
                         }
-                        onClick={() => this.handleSelector("sector", e)}
+                        onClick={() => this.handleSelector("sector", d)}
                       />
                     );
                   }}

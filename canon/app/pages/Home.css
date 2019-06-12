@@ -257,6 +257,18 @@ select {
   left: 30px !important;
 }
 
+.bp3-menu {
+  padding: 5px 0px !important;
+  & .bp3-menu-item {
+    border-radius: 0px;
+  }
+}
+
+.bp3-menu-item.selected {
+  background-color: var(--red);
+  color: var(--white);
+}
+
 .popover-locations {
   max-height: 200px;
   overflow-y: scroll;
