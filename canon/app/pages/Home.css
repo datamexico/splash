@@ -257,6 +257,16 @@ select {
   left: 30px !important;
 }
 
+.intro {
+  & a {
+    color: var(--white);
+    &:hover {
+      color: #ccc;
+      text-decoration: none;
+    }
+  }
+}
+
 .bp3-menu {
   padding: 5px 0px !important;
   & .bp3-menu-item {
