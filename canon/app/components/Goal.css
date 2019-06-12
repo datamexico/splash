@@ -1,0 +1,22 @@
+.goal {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  & .icon {
+    height: 60px;
+  }
+  & .number {
+    font-size: 26px;
+    margin: 15px 0px;
+    &::after {
+      content: "■";
+      color: var(--red);
+      font-weight: bold;
+      font-size: 12px;
+      display: inline-block; 
+      width: 18px; 
+      margin-left: 5px;
+    }
+  }
+}

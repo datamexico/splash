@@ -1,0 +1,280 @@
+@import url("https://fonts.googleapis.com/css?family=Chivo:300,400|Barlow&display=swap");
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Barlow", sans-serif;
+}
+
+p, li {
+  line-height: 1.4rem;
+  font-weight: 300;
+}
+
+#Home {
+  background-color: var(--dark-blue);
+  color: var(--white);
+
+  & iframe {
+    min-height: 520px;
+  }
+
+  & .collaborator-icons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center !important;
+  }
+
+  & .video {
+    padding-top: 80px;
+  }
+
+  & .contact-form {
+    & .label { 
+      color: #aaaaaa;
+      opacity: 0.7;
+      padding: 10px;
+      padding-left: 50px;
+      display: flex;
+      margin-top: 5px;
+      margin-bottom: 0px;
+      & .icon {
+        height: 50px;
+      }
+    }
+    & .input {
+      width: 100%;
+      border-width: 0px;
+      border-bottom: 1px solid #4f5159;
+      padding: 10px;
+      padding-left: 50px;
+      background-color: transparent;
+      margin-bottom: 10px;
+      color: var(--white);
+      &::placeholder { 
+        color: #aaaaaa;
+        opacity: 0.7;
+      }
+
+    }
+    & .textarea {
+      background-color: var(--light-blue);
+      width: 100%;
+      border-width: 0px;
+      margin-bottom: 10px;
+      margin-top: 10px;
+      color: var(--white);
+      padding: 10px;
+    }
+    & .submit {
+      background-color: var(--red);
+      border: 0px;
+      padding: 10px 15px;
+      font-size: 14px;
+      color: var(--white);
+      text-transform: uppercase;
+      float: right;
+    }
+  }
+
+  & .hero {
+    background-image: url(/images/background.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 80vh;
+    position: relative;
+    z-index: 1;
+
+    & .container {
+      height: 100%;
+    }
+
+    & .menu {
+      display: inline-flex;
+      flex-wrap: wrap;
+      font-size: 12px;
+      justify-content: space-around;
+      list-style: none;
+      text-transform: uppercase;
+      width: 100%;
+      & a {
+        color: var(--white);
+        border-bottom: 3px solid transparent;
+        padding: 5px 10px;
+        &:hover {
+          border-bottom: 3px solid var(--red);
+          text-decoration: none;
+        }
+      }
+    }
+
+    & .columns.about {
+      height: inherit;
+      & .column {
+        align-self: flex-end;
+      }
+    }
+    &::before {
+      position: absolute;
+      background: linear-gradient(180deg, rgba(10, 10, 10, 30%), var(--dark-blue));
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      content: "";
+      z-index: -1;
+    }
+
+    & .icon {
+      width: 250px;
+      margin-bottom: 50px;
+    }
+
+    & .mini-icon {
+      width: 120px;
+      margin-right: 20px;
+    }
+  }
+
+  & .faq {
+    flex-direction: column;
+    padding: 20px 30px;
+
+    & .title {
+      text-align: center;
+    }
+
+    & li {
+      margin-bottom: 10px;
+    }
+  }
+
+  & .footer {
+    background: #1f2023;
+    & .mini-icon {
+      width: 120px;
+    }
+
+    & .mini-logos {
+      align-items: flex-end;
+      justify-content: flex-end;
+      display: flex;
+      & .mini-icon {
+        width: 100px;
+        margin-left: 15px;
+      }
+    }
+  }
+}
+
+.highlight {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.container {
+  max-width: 1440px;
+  margin: auto;
+  padding: 20px 80px;
+}
+
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  & .column {
+    min-width: 1px;
+    flex: 1;
+    padding: 10px;
+  }
+}
+
+.mail {
+  background: transparent url(/icons/ico-mail.svg) left no-repeat;
+}
+
+.labor {
+  background: transparent url(/icons/ico-labor.svg) left no-repeat;
+}
+
+.message {
+  background: transparent url(/icons/ico-message.svg) left no-repeat;
+}
+
+.name {
+  background: transparent url(/icons/ico-name.svg) left no-repeat;
+}
+
+.location {
+  background: transparent url(/icons/ico-location.svg) left no-repeat;
+}
+
+.subject {
+  background: transparent url(/icons/ico-subject.svg) left no-repeat;
+}
+
+@media only screen and (max-width: 768px) {
+  iframe {
+    min-height: 320px !important;
+  }
+  #Home .hero .columns.about {
+    justify-content: center;
+    & .title, & p {
+      text-align: center;
+    }
+    & .column {
+      flex: 0;
+    }
+  }
+
+  .container {
+    padding: 20px 30px;
+  }
+
+  .goal {
+    text-align: center;
+    align-items: center !important;
+  }
+
+  .columns {
+    flex-direction: column;
+    & .column {
+      width: 100%;
+    }
+  }
+
+  .faq {
+    padding: 20px 0px !important;
+  }
+
+  .footer {
+    & .column {
+      text-align: center;
+    }
+    & .mini-logos {
+      justify-content: center !important;
+    }
+  }
+
+  .hero {
+    & .datamexico-logo {
+      display: flex;
+      justify-content: center;
+    }
+
+    & .collaborator-icons {
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .contact {
+    & .title, & p {
+      text-align: center;
+    }
+  }
+
+  .submit {
+    width: 100%;
+  }
+}

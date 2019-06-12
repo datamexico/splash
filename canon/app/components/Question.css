@@ -1,0 +1,26 @@
+.question {
+  background-color: var(--light-blue);
+  border-radius: 5px;
+  list-style: none;
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  & .question-title::before {
+    content: "■";
+    color: var(--red);
+    font-weight: bold;
+    font-size: 12px;
+    display: inline-block; 
+    width: 18px; 
+  }
+  & .bp3-icon {
+    color: var(--red);
+  }
+}
+
+.paragraph {
+  padding: 10px 30px 20px 30px;
+}
