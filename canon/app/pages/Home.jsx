@@ -23,7 +23,8 @@ export default class Home extends Component {
       locations: [],
       locationsFilter: [],
       locationPivot: {},
-      search: undefined
+      search: undefined,
+      countries: []
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -35,22 +36,27 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
-    axios.get("/json/geo.json").then(resp => {
-      const data = resp.data;
-      const obj = [
-        {depth: "country", name: "México", id: "mx", ent: 0},
-        {depth: "country", name: "Otro país", id: "other", ent: 0}
-      ];
-      this.setState({locations: data, locationsFilter: obj});
-    });
+
+    axios.all([
+      axios.get("/json/geo.json"),
+      axios.get("/json/country.json")
+    ])
+      .then(axios.spread((geoResp, countryResp) => {
+        const data = geoResp.data;
+        const obj = [
+          {depth: "country", name: "México", id: "mx", ent: 0},
+          {depth: "country", name: "Otro país", id: "other", ent: 0}
+        ];
+        this.setState({locations: data, locationsFilter: obj, countries: countryResp.data});
+      }));
   }
 
   handleInputChange = e => {
-    this.setState({search: e.target.value});
+    this.setState({ search: e.target.value });
   };
 
   handleSelector = (state, value) => {
-    this.setState({[state]: value});
+    this.setState({ [state]: value });
   }
 
   handleSubmit = event => {
@@ -87,13 +93,19 @@ export default class Home extends Component {
 
   handleChange = (state, evt) => {
     evt.preventDefault();
-    this.setState({[state]: evt.target.value});
+    this.setState({ [state]: evt.target.value });
   }
 
   handleLocation = d => {
     if (d.depth === "country" && d.id === "mx") {
       this.setState({
         locationsFilter: this.state.locations.filter(h => h.depth === "ent"),
+        search: undefined
+      });
+    }
+    else if (d.depth === "country" && d.id === "other") {
+      this.setState({
+        locationsFilter: this.state.countries,
         search: undefined
       });
     }
@@ -104,31 +116,34 @@ export default class Home extends Component {
       });
     }
     else {
-      this.setState({location: d.name, isOpen: false, locationPivot: d});
+      console.log("good bye");
+      this.setState({ location: d.name, isOpen: false, locationPivot: d });
     }
   }
 
   backLocation = d => {
     if (d.depth === "mun") {
-      this.setState({locationsFilter: this.state.locations.filter(h => h.depth === "ent")});
+      this.setState({ locationsFilter: this.state.locations.filter(h => h.depth === "ent") });
     }
-    else if (d.depth === "ent") {
+    else if (d.depth === "ent" || !d.depth) {
       const obj = [
-        {depth: "country", name: "México", id: "mx", ent: 0},
-        {depth: "country", name: "Otro país", id: "other", ent: 0}
+        { depth: "country", name: "México", id: "mx", ent: 0 },
+        { depth: "country", name: "Otro país", id: "other", ent: 0 }
       ];
-      this.setState({locationsFilter: obj});
+      this.setState({ locationsFilter: obj });
     }
   }
 
   render() {
 
-    const {search, locationsFilter} = this.state;
+    const { search, locationsFilter } = this.state;
 
     const filteredItems = search ? locationsFilter.filter(d =>
       d.name.toLowerCase().includes(search.toLowerCase())
     ) : locationsFilter;
     filteredItems.sort((a, b) => a.name > b.name ? 1 : -1);
+
+    console.log(filteredItems);
 
     return (
       <div id="Home">
@@ -343,10 +358,10 @@ export default class Home extends Component {
                   resetOnQuery={true}
                 >
                   {/* children become the popover target; render value here */}
-                  <Button 
-                    className="dropdown labor" 
-                    text={this.state.sector === "" ? <span className="default-question">¿En qué sector trabajas?</span> : this.state.sector} 
-                    rightIcon="chevron-down" 
+                  <Button
+                    className="dropdown labor"
+                    text={this.state.sector === "" ? <span className="default-question">¿En qué sector trabajas?</span> : this.state.sector}
+                    rightIcon="chevron-down"
                   />
                 </Select>
 
@@ -359,17 +374,17 @@ export default class Home extends Component {
                         onChange={this.handleInputChange}
                         value={search || ""}
                         placeholder={"Filtrar"}
-                        rightElement={<Button onClick={() => this.setState({search: undefined})} className="button-list" icon="cross" />}
+                        rightElement={<Button onClick={() => this.setState({ search: undefined })} className="button-list" icon="cross" />}
                       />
                       <ul>
-                        {this.state.locationsFilter[0] && this.state.locationsFilter[0].depth !== "country" 
+                        {this.state.locationsFilter[0] && this.state.locationsFilter[0].depth !== "country"
                           ? <li className="return" onClick={() => this.backLocation(this.state.locationsFilter[0])}>Volver</li>
                           : ""}
                         {filteredItems.map((d, i) => {
                           const s = this.state.locationPivot.id === d.id ? "selected" : "";
-                          return <li className={s} key={`item_${d.depth}_${i}`} onClick={() => this.handleLocation(d)}>
+                          return <li className={s} key={`item_${d.name}_${i}`} onClick={() => this.handleLocation(d)}>
                             <span>{d.name}</span>
-                            {d.depth === "ent" || d.id === "mx" ? <Icon icon="chevron-right" /> : <span />}
+                            {d.depth === "ent" || d.depth === "country" ? <Icon icon="chevron-right" /> : <span />}
                           </li>;
                         })}
                         {filteredItems.length === 0 ? <li>Sin resultados</li> : ""}
@@ -378,16 +393,16 @@ export default class Home extends Component {
                   }
                   interactionKind={PopoverInteractionKind.CLICK}
                   isOpen={this.state.isOpen}
-                  onInteraction={state => this.setState({isOpen: state})}
+                  onInteraction={state => this.setState({ isOpen: state })}
                   position={Position.BOTTOM}
                 >
-                  <Button 
+                  <Button
                     className="dropdown location"
-                    onClick={() => this.setState({isOpen: !this.state.isOpen})}
-                    text={this.state.location === "" 
+                    onClick={() => this.setState({ isOpen: !this.state.isOpen })}
+                    text={this.state.location === ""
                       ? <span className="default-question">¿Qué localidad representas a través de esta comunicación?</span> : this.state.location
-                    } 
-                    rightIcon="chevron-down" 
+                    }
+                    rightIcon="chevron-down"
                   />
                 </Popover>
 
