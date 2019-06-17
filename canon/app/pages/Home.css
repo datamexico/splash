@@ -80,13 +80,9 @@ p, li {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 80vh;
+    min-height: 80vh;
     position: relative;
     z-index: 1;
-
-    & .container {
-      height: 100%;
-    }
 
     & .menu {
       display: inline-flex;
@@ -109,7 +105,7 @@ p, li {
     }
 
     & .columns.about {
-      height: inherit;
+      height: calc(80vh - 50px);
       & .column {
         align-self: flex-end;
       }
@@ -312,6 +308,12 @@ select {
 .default-question {
   color: #aaaaaa;
   opacity: 0.7;
+}
+
+@media only screen and (max-width: 360px) {
+  #Home .hero .columns.about {
+    height: 100vh;
+  }
 }
 
 @media only screen and (max-width: 768px) {

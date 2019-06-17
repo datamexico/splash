@@ -143,8 +143,6 @@ export default class Home extends Component {
     ) : locationsFilter;
     filteredItems.sort((a, b) => a.name > b.name ? 1 : -1);
 
-    console.log(filteredItems);
-
     return (
       <div id="Home">
         <div className="hero">
