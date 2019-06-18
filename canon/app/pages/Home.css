@@ -80,7 +80,7 @@ p, li {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    min-height: 80vh;
+    // min-height: 80vh;
     position: relative;
     z-index: 1;
 
@@ -92,6 +92,7 @@ p, li {
       list-style: none;
       text-transform: uppercase;
       width: 100%;
+      padding: 0px;
       & a {
         color: var(--white);
         border-bottom: 3px solid transparent;
@@ -319,8 +320,10 @@ select {
   iframe {
     min-height: 320px !important;
   }
+
   #Home .hero .columns.about {
     justify-content: center;
+    height: 100%;
     & .title, & p {
       text-align: center;
     }
