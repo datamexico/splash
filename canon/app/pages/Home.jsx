@@ -176,7 +176,7 @@ export default class Home extends Component {
               </div>
               <div className="column">
                 <h2 className="title">El proyecto</h2>
-                <p className="intro"><strong>DataMexico</strong> es un esfuerzo conjunto entre la <strong><a href="https://www.gob.mx/se/" target="_blank" rel="noopener noreferrer">Secretaría de Economía (SE)</a></strong>, <strong><a href="https://matt.org/" target="_blank" rel="noopener noreferrer">Mexicans and Americans Thinking Together (MATT)</a></strong> y <strong><a href="https://datawheel.us/" target="_blank" rel="noopener noreferrer">Datawheel</a></strong>, que permite la <span className="highlight">integración</span>, <span className="highlight">visualización</span> y <span className="highlight">análisis de datos</span> para mejorar la toma de decisiones de políticas públicas enfocadas en fomentar la <span className="highligh">innovación</span>, <span className="highligh">inclusión</span> y <span className="highligh">diversificación</span> de la economía mexicana.
+                <p className="intro"><strong>DataMéxico</strong> es un esfuerzo conjunto entre la <strong><a href="https://www.gob.mx/se/" target="_blank" rel="noopener noreferrer">Secretaría de Economía (SE)</a></strong>, <strong><a href="https://matt.org/" target="_blank" rel="noopener noreferrer">Mexicans and Americans Thinking Together (MATT)</a></strong> y <strong><a href="https://datawheel.us/" target="_blank" rel="noopener noreferrer">Datawheel</a></strong>, que permite la <span className="highlight">integración</span>, <span className="highlight">visualización</span> y <span className="highlight">análisis de datos</span> para mejorar la toma de decisiones de políticas públicas enfocadas en fomentar la <span className="highligh">innovación</span>, <span className="highligh">inclusión</span> y <span className="highligh">diversificación</span> de la economía mexicana.
                 </p>
               </div>
             </div>
@@ -228,18 +228,18 @@ export default class Home extends Component {
 
               <p>Actualmente, el problema principal de los sitios de datos abiertos se encuentra en la dificultad para encontrar y combinar diferentes fuentes de información, visualizarla y procesarla para tomar decisiones acertadas. </p>
 
-              <p>DataMexico integrará una diversa gama de bases de datos sobre comercio, producción, empleo, educación y demografía (entre otros) para todo el país, con alta resolución espacial a nivel regional y municipal. La plataforma será fundamental para elaborar una política industrial, de innovación y de desarrollo regional que genere riqueza en el país.</p>
+              <p>DataMéxico integrará una diversa gama de bases de datos sobre comercio, producción, empleo, educación y demografía (entre otros) para todo el país, con alta resolución espacial a nivel regional y municipal. La plataforma será fundamental para elaborar una política industrial, de innovación y de desarrollo regional que genere riqueza en el país.</p>
 
-              <p>Más allá de la integración de datos, DataMexico incluirá también un componente de investigación, que generará análisis especializados y propuestas de política pública para la economía del país a fin de promover una estructura productiva, diversa y sofisticada. Este eje se pretende llevar a cabo en colaboración con instituciones educativas y de investigación nacionales e internacionales. </p>
+              <p>Más allá de la integración de datos, DataMéxico incluirá también un componente de investigación, que generará análisis especializados y propuestas de política pública para la economía del país a fin de promover una estructura productiva, diversa y sofisticada. Este eje se pretende llevar a cabo en colaboración con instituciones educativas y de investigación nacionales e internacionales. </p>
 
             </Question>
             <Question
-              title="Quién podrá utilizar DataMexico?"
+              title="¿Quién podrá utilizar DataMéxico?"
             >
               <p>La plataforma será pública, gratuita y de código abierto para uso del gobierno y de todos los actores interesados; industrial y empresarial, academia, sociedad civil, gobiernos locales, entre otros.</p>
             </Question>
             <Question
-              title="¿Cómo se estimulará la utilización de DataMexico?"
+              title="¿Cómo se estimulará la utilización de DataMéxico?"
             >
               <p>Para estimular el uso de la herramienta, más allá de la SE, será prioridad su socialización, incluyendo la activación de un nodo de investigación (el Research Hub), que involucra investigadores mexicanos e internacionales. El proyecto promoverá diversos eventos con actores del sector público y privado, siempre con un enfoque multidisciplinario. Adicionalmente, se realizarán capacitaciones y sesiones de retroalimentación de los usuarios, para que así la herramienta sea de utilidad para los actores mexicanos.</p>
             </Question>
@@ -248,20 +248,20 @@ export default class Home extends Component {
             >
               <p>El proyecto fue lanzado el 30 de Abril de 2019 y será implementado durante tres años. Tiene cuatro momentos importantes:  </p>
               <ul>
-                <li><strong>Enero 2020:</strong> lanzamiento de DataMexico 1.0 (con foco en datos productivos y de comercio) y diseminación de los análisis respectivos para apoyar la toma de decisiones de la política industrial del país.</li>
-                <li><strong>Enero 2021:</strong> lanzamiento de DataMexico 2.0 (con gama ampliada de datos públicos, e.g. educación, salud, seguridad, vivienda, entre otros) y presentación de resultados de investigación que apoyan políticas públicas. Además, serán realizadas sesiones de entrenamiento para funcionarios públicos, emprendedores y organizaciones de la sociedad civil.</li>
-                <li><strong>Septiembre 2021:</strong> lanzamiento de nuevas funcionalidades de descarga de datos, análisis y visualizaciones en DataMexico 3.0 y taller de Transformación Digital para participantes de los sectores público y privado.
+                <li><strong>Enero 2020:</strong> lanzamiento de DataMéxico 1.0 (con foco en datos productivos y de comercio) y diseminación de los análisis respectivos para apoyar la toma de decisiones de la política industrial del país.</li>
+                <li><strong>Enero 2021:</strong> lanzamiento de DataMéxico 2.0 (con gama ampliada de datos públicos, e.g. educación, salud, seguridad, vivienda, entre otros) y presentación de resultados de investigación que apoyan políticas públicas. Además, serán realizadas sesiones de entrenamiento para funcionarios públicos, emprendedores y organizaciones de la sociedad civil.</li>
+                <li><strong>Septiembre 2021:</strong> lanzamiento de nuevas funcionalidades de descarga de datos, análisis y visualizaciones en DataMéxico 3.0 y taller de Transformación Digital para participantes de los sectores público y privado.
                 </li>
-                <li><strong>Abril 2022:</strong> lanzamiento de un sistema de monitoreo de brechas de inversiones públicas en el cual pueden ser agregadas varias dimensiones, tales como: tipo (saneamiento, salud, infraestructura, etc.), localidad (geocodificada o agregada por estado, município o colonia), o por unidades administrativas (secretaría, gobierno estatal o municipal) lo que garantiza mayor transparencia del uso de los recursos públicos y una mejor evaluación de sus objetivos y eficiencia.
+                <li><strong>Abril 2022:</strong> lanzamiento de un sistema de monitoreo de brechas de inversiones públicas en el cual pueden ser agregadas varias dimensiones, tales como: tipo (saneamiento, salud, infraestructura, etc.), localidad (geocodificada o agregada por estado, municipio o colonia), o por unidades administrativas (secretaría, gobierno estatal o municipal) lo que garantiza mayor transparencia del uso de los recursos públicos y una mejor evaluación de sus objetivos y eficiencia.
                 </li>
               </ul>
 
 
             </Question>
             <Question
-              title="Soy investigador(a) o miembro de la academia. ¿Cómo puedo participar de DataMexico?"
+              title="Soy investigador(a) o miembro de la academia. ¿Cómo puedo participar de DataMéxico?"
             >
-              <p>DataMexico está formulando un nodo de investigación que inicialmente tiene un enfoque en complejidad económica, geografía económica e innovación. El nodo trabaja en sinergia para generar análisis especializados, investigación y propuestas de política pública para la economía del país a fin de promover una estructura productiva diversa y sofisticada. Para participar del nodo, completa la forma en línea [link to contact form] siguiendo los pasos.</p>
+              <p>DataMéxico está formulando un nodo de investigación que inicialmente tiene un enfoque en complejidad económica, geografía económica e innovación. El nodo trabaja en sinergia para generar análisis especializados, investigación y propuestas de política pública para la economía del país a fin de promover una estructura productiva diversa y sofisticada. Para participar del nodo, completa la forma en línea [link to contact form] siguiendo los pasos.</p>
 
               <p>A lo largo del proyecto se llevarán cabo proyectos de investigación con el objetivo de contestar las siguientes preguntas estratégicas para el de desarrollo económico del país: </p>
               <ul>
@@ -276,17 +276,17 @@ export default class Home extends Component {
 
             </Question>
             <Question
-              title="Soy representante del gobierno local. ¿Cómo puedo formar parte de DataMexico?"
+              title="Soy representante del gobierno local. ¿Cómo puedo formar parte de DataMéxico?"
             >
-              <p>Desde su génesis, DataMexico integrará una diversidad de bases de datos para todas las regiones del país, con alta resolución espacial, incluyendo el comercio de sus bienes y servicios, productos e industrias, mercado laboral, condiciones educativas, entre otras, de tal forma que la información sea accesible para un mayor número de usuarios. Si, en base a sus atribuciones, usted tiene datos subnacionales que le gustaría aportar al proyecto, escríbanos <a href="mailto:data.mexico@economia.gob.mx">data.mexico@economia.gob.mx</a>  indicando su nombre, institución, función y un resumen de los datos así como la relevancia de estos y otros datos para su administración. Al registrarse en la plataforma DataMexico, usted recibirá un informe periódico de los entrenamientos, talleres, eventos y avances del proyecto.</p>
+              <p>Desde su génesis, DataMéxico integrará una diversidad de bases de datos para todas las regiones del país, con alta resolución espacial, incluyendo el comercio de sus bienes y servicios, productos e industrias, mercado laboral, condiciones educativas, entre otras, de tal forma que la información sea accesible para un mayor número de usuarios. Si, en base a sus atribuciones, usted tiene datos subnacionales que le gustaría aportar al proyecto, escríbanos <a href="mailto:data.mexico@economia.gob.mx">data.mexico@economia.gob.mx</a>  indicando su nombre, institución, función y un resumen de los datos así como la relevancia de estos y otros datos para su administración. Al registrarse en la plataforma DataMéxico, usted recibirá un informe periódico de los entrenamientos, talleres, eventos y avances del proyecto.</p>
             </Question>
             <Question
-              title="Soy parte del sector privado. ¿Cómo puedo colaborar con DataMexico?"
+              title="Soy parte del sector privado. ¿Cómo puedo colaborar con DataMéxico?"
             >
-              <p>Cada vez más, los datos están posicionándose como el insumo más importante de la industria, el comercio y los servicios. Como usuarios o generadores de estos datos, empresas grandes y pequeñas pueden involucrarse activamente con DataMexico, aportando informaciones, comentarios, sugerencias, recursos financieros para la mantención de la plataforma o participando de capacitaciones para su utilización. Para empezar el diálogo con el Equipo de DataMexico, <AnchorLink to="contact">escríbanos</AnchorLink> indicando su nombre, empresa, función y un resumen de sus ideas de colaboración. </p>
+              <p>Cada vez más, los datos están posicionándose como el insumo más importante de la industria, el comercio y los servicios. Como usuarios o generadores de estos datos, empresas grandes y pequeñas pueden involucrarse activamente con DataMéxico, aportando informaciones, comentarios, sugerencias, recursos financieros para la mantención de la plataforma o participando de capacitaciones para su utilización. Para empezar el diálogo con el Equipo de DataMéxico, <AnchorLink to="contact">escríbanos</AnchorLink> indicando su nombre, empresa, función y un resumen de sus ideas de colaboración. </p>
             </Question>
             <Question
-              title="¿Existen proyectos similares a DataMexico en otros países?"
+              title="¿Existen proyectos similares a DataMéxico en otros países?"
             >
               <p>Proyectos similares ya se han realizado en otros países: en 2011 fue presentado el <a href="https://atlas.media.mit.edu/es/" target="_blank" rel="noopener noreferrer">Observatorio de Complejidad Económica</a>, que consiste en varias herramientas en línea que le permiten a los usuarios crear visualizaciones de los conjuntos de bienes exportados e importados por varios países para todos los años para los cuales hay datos disponibles. </p>
 
