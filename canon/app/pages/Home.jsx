@@ -44,10 +44,10 @@ export default class Home extends Component {
       .then(axios.spread((geoResp, countryResp) => {
         const data = geoResp.data;
         const obj = [
-          {depth: "country", name: "México", id: "mx", ent: 0},
-          {depth: "country", name: "Otro país", id: "other", ent: 0}
+          { depth: "country", name: "México", id: "mx", ent: 0 },
+          { depth: "country", name: "Otro país", id: "other", ent: 0 }
         ];
-        this.setState({locations: data, locationsFilter: obj, countries: countryResp.data});
+        this.setState({ locations: data, locationsFilter: obj, countries: countryResp.data });
       }));
   }
 
@@ -116,7 +116,6 @@ export default class Home extends Component {
       });
     }
     else {
-      console.log("good bye");
       this.setState({ location: d.name, isOpen: false, locationPivot: d });
     }
   }
@@ -164,7 +163,7 @@ export default class Home extends Component {
                 </div>
                 <div className="collaborator-icons">
                   <a href="https://www.gob.mx/se/" target="_blank" rel="noopener noreferrer">
-                    <img className="mini-icon" src="/images/SE.svg" alt="" />
+                    <img className="mini-icon se" src="/images/SE.png" alt="" />
                   </a>
                   <a href="https://www.matt.org/" target="_blank" rel="noopener noreferrer">
                     <img className="mini-icon" src="/images/matt-white.svg" alt="" />
@@ -185,7 +184,7 @@ export default class Home extends Component {
         <div className="container video" id="audience">
           <div className="columns">
             <div className="column">
-              <iframe width="100%" src="https://player.vimeo.com/video/341629355" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe width="100%" src="https://player.vimeo.com/video/341629355" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
             </div>
           </div>
         </div>
@@ -421,7 +420,7 @@ export default class Home extends Component {
               </div>
               <div className="column mini-logos collaborator-icons">
                 <a href="https://www.gob.mx/se/" target="_blank" rel="noopener noreferrer">
-                  <img className="mini-icon" src="/images/SE-gray.svg" alt="" />
+                  <img className="mini-icon se" src="/images/SE-gray.png" alt="" />
                 </a>
                 <a href="https://www.matt.org/" target="_blank" rel="noopener noreferrer">
                   <img className="mini-icon" src="/images/matt-gray.svg" alt="" />
