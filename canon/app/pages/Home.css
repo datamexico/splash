@@ -22,8 +22,8 @@ p, li {
     flex-wrap: wrap;
     align-items: center !important;
     & .se {
-      height: 40px;
-      width: auto !important;
+      height: auto !important;
+      width: 150px !important;
     }
   }
 
@@ -131,7 +131,7 @@ p, li {
     }
 
     & .mini-icon {
-      width: 120px;
+      width: 150px;
       margin-right: 20px;
       &.se {
         height: 50px;
@@ -156,7 +156,7 @@ p, li {
   & .footer {
     background: #1f2023;
     & .mini-icon {
-      width: 120px;
+      width: 150px;
     }
 
     & .mini-logos {
@@ -164,7 +164,7 @@ p, li {
       justify-content: flex-end;
       display: flex;
       & .mini-icon {
-        width: 100px;
+        width: 150px;
         margin-left: 15px;
       }
     }

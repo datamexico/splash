@@ -165,9 +165,6 @@ export default class Home extends Component {
                   <a href="https://www.gob.mx/se/" target="_blank" rel="noopener noreferrer">
                     <img className="mini-icon se" src="/images/SE.png" alt="" />
                   </a>
-                  <a href="https://www.matt.org/" target="_blank" rel="noopener noreferrer">
-                    <img className="mini-icon" src="/images/matt-white.svg" alt="" />
-                  </a>
                   <a href="https://datawheel.us" target="_blank" rel="noopener noreferrer">
                     <img className="mini-icon" src="/images/datawheel-white.svg" alt="" />
                   </a>
@@ -175,7 +172,7 @@ export default class Home extends Component {
               </div>
               <div className="column">
                 <h2 className="title">El proyecto</h2>
-                <p className="intro"><strong>DataMéxico</strong> es un esfuerzo conjunto entre la <strong><a href="https://www.gob.mx/se/" target="_blank" rel="noopener noreferrer">Secretaría de Economía (SE)</a></strong>, <strong><a href="https://matt.org/" target="_blank" rel="noopener noreferrer">Mexicans and Americans Thinking Together (MATT)</a></strong> y <strong><a href="https://datawheel.us/" target="_blank" rel="noopener noreferrer">Datawheel</a></strong>, que permite la <span className="highlight">integración</span>, <span className="highlight">visualización</span> y <span className="highlight">análisis de datos</span> para mejorar la toma de decisiones de políticas públicas enfocadas en fomentar la <span className="highligh">innovación</span>, <span className="highligh">inclusión</span> y <span className="highligh">diversificación</span> de la economía mexicana.
+                <p className="intro"><strong>DataMéxico</strong> es un esfuerzo conjunto entre la <strong><a href="https://www.gob.mx/se/" target="_blank" rel="noopener noreferrer">Secretaría de Economía (SE)</a></strong> y <strong><a href="https://datawheel.us/" target="_blank" rel="noopener noreferrer">Datawheel</a></strong>, que permite la <span className="highlight">integración</span>, <span className="highlight">visualización</span> y <span className="highlight">análisis de datos</span> para mejorar la toma de decisiones de políticas públicas enfocadas en fomentar la <span className="highligh">innovación</span>, <span className="highligh">inclusión</span> y <span className="highligh">diversificación</span> de la economía mexicana.
                 </p>
               </div>
             </div>
@@ -421,9 +418,6 @@ export default class Home extends Component {
               <div className="column mini-logos collaborator-icons">
                 <a href="https://www.gob.mx/se/" target="_blank" rel="noopener noreferrer">
                   <img className="mini-icon se" src="/images/SE-gray.png" alt="" />
-                </a>
-                <a href="https://www.matt.org/" target="_blank" rel="noopener noreferrer">
-                  <img className="mini-icon" src="/images/matt-gray.svg" alt="" />
                 </a>
                 <a href="https://datawheel.us/" target="_blank" rel="noopener noreferrer">
                   <img className="mini-icon" src="/images/datawheel-gray.svg" alt="" />
